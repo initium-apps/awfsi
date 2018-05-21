@@ -3,6 +3,7 @@
 #if defined(AWFSI_POSIX)
     #include<sys/stat.h>
     #include<dirent.h>
+    #include<unistd.h>
 #else
     #error Not yet implemented
 #endif
@@ -44,6 +45,34 @@ bool entry::mkdirs() {
     return true;
 }
 
+bool entry::remove() {
+    #if defined(AWFSI_POSIX)
+        if(is_dir()) {
+            std::vector<fs::entry> children;
+            get_children(children);
+            for(fs::entry& e : children) {
+                e.remove();
+            }
+
+            return rmdir(path.c_str()) == 0;
+        } else {
+            return unlink(path.c_str()) == 0;
+        }
+    #else
+        #error Not yet implemented
+    #endif
+}
+
+bool entry::is_dir() {
+    #if defined(AWFSI_POSIX)
+        static thread_local struct stat sb;
+
+        return stat(path.c_str(), &sb) == 0 && S_ISDIR(sb.st_mode);
+    #else
+        #error Not yet implemented
+    #endif
+}
+
 fs::entry entry::get_parent() {
     return fs::entry(path.substr(0, path.find_last_of(fs::sep)));
 }
@@ -73,6 +102,22 @@ bool entry::get_children(std::vector<fs::entry>& ret) {
 
 const fs::str& entry::get_path() const {
     return this->path;
+}
+
+const char* entry::c_path() const {
+    return this->path.c_str();
+}
+
+fs::str entry::get_name() const {
+    return path.substr(path.find_last_of(fs::sep) + 1);
+}
+
+fs::str entry::get_ext(bool first) const {
+    fs::str name = get_name();
+    if(first)
+        return name.substr(0, name.find(fs::ext_sep));
+    else
+        return name.substr(0, name.find_last_of(fs::ext_sep));
 }
 
 std::ostream& operator<<(std::ostream& strm, const fs::entry& e) {
