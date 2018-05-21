@@ -33,6 +33,7 @@ class entry {
     fs::str path; /**< Self-explanatory. */
 
     public:
+        entry(const char*); // To support non-Unicode on Windows.
         entry(fs::str);
         ~entry();
 
@@ -55,12 +56,18 @@ class entry {
          * @return The entry path. This path is not guaranteed to be absolute, relative nor canonical.
          */
         const fs::str& get_path() const;
-        const char* c_path() const;
+        const fs::str::value_type* c_path() const;
 
         /**
          * @return The entry name, including the extension.
          */
         fs::str get_name() const;
+
+        /**
+         * @param first Handle multi-word extensions?
+         * @return The entry name, excluding the extension.
+         */
+        fs::str get_stem(bool first = true) const;
 
         /**
          * @param first Handle multi-word extensions?
@@ -71,7 +78,6 @@ class entry {
         /**
          * @return An instance of
          */
-
         friend std::ostream& operator<<(std::ostream&, const entry&);
 };
 
