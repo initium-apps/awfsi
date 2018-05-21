@@ -175,5 +175,12 @@ std::ostream& operator<<(std::ostream& strm, const fs::entry& e) {
     return strm << e.path;
 }
 
+fs::entry operator/(const fs::entry& left, const fs::entry& right) {
+    if(left.path.back() == fs::sep)
+        return left.path + right.path;
+    else
+        return left.path + fs::sep + right.path;
+}
+
 
 } // namespace fs

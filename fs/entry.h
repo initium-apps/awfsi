@@ -79,6 +79,8 @@ class entry {
          * @return An instance of
          */
         friend std::ostream& operator<<(std::ostream&, const entry&);
+
+        friend fs::entry operator/(const fs::entry&, const fs::entry&);
 };
 
 } // namespace fs
