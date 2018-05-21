@@ -115,9 +115,9 @@ fs::str entry::get_name() const {
 fs::str entry::get_ext(bool first) const {
     fs::str name = get_name();
     if(first)
-        return name.substr(0, name.find(fs::ext_sep));
+        return name.substr(name.find(fs::ext_sep) + 1);
     else
-        return name.substr(0, name.find_last_of(fs::ext_sep));
+        return name.substr(name.find_last_of(fs::ext_sep) + 1);
 }
 
 std::ostream& operator<<(std::ostream& strm, const fs::entry& e) {
