@@ -2,5 +2,6 @@ bin
 obj
 *.cbp
 *.depend
+*.layout
 main.cpp
 test.cpp
