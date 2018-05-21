@@ -14,6 +14,7 @@ In no particular order:
 
  * ~~**_(!)_ Win32 support.**~~
  * Recursive `get_children` function.
+ * Actually testing this on OS X.
 
 ## License
 The code in the `/fs` directory is dual-licensed under the MIT License and the Unlicense.  
