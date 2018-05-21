@@ -3,7 +3,7 @@ This was made after Boost.Filesystem segfaulted in every single function and Sta
 Plus Boost.Filesystem has absolutely no documentation, so fuck you both.
 
 ## Installation
-This is not a header-only library, however it is very small (currently 2 files).
+This is not a header-only library, however it is very small (currently 2 files).  
 Simply copy-paste files under the `fs` directory to a common directory in your project.
 
 ## Usage
