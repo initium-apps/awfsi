@@ -2,4 +2,5 @@ bin
 obj
 *.cbp
 *.depend
-main.c
+main.cpp
+test.cpp
