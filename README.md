@@ -12,7 +12,7 @@ See the [wiki](https://github.com/initium-apps/awfsi/wiki/Usage).
 ## Planned Features
 In no particular order:
 
- * **_(!)_ Win32 support.**
+ * ~~**_(!)_ Win32 support.**~~
  * Recursive `get_children` function.
 
 ## License
