@@ -18,8 +18,13 @@ static std::wstring convertStrToWstr(std::string s) {
 
 namespace fs {
 
-entry::entry(const char* cstr) : path(convertStrToWstr(cstr)) {
-}
+#if defined(AWFSI_POSIX)
+    entry::entry(const char* cstr) : path(cstr) {
+    }
+#else
+    entry::entry(const char* cstr) : path(convertStrToWstr(cstr)) {
+    }
+#endif
 
 entry::entry(fs::str path) : path(path) {
 }
