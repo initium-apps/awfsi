@@ -17,5 +17,4 @@ In no particular order:
  * Actually testing this on OS X.
 
 ## License
-The code in the `/fs` directory is dual-licensed under the MIT License and the Unlicense.  
-The `LICENSE` file only covers the MIT license.
+The code in the `/fs` directory is licensed under the MIT License.
